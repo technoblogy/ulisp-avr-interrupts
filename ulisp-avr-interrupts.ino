@@ -2500,8 +2500,8 @@ object *fn_eval (object *args, object *env) {
 
 object *fn_globals (object *args, object *env) {
   (void) args;
-  printobject(Events, pserial);
-  return nil;
+  if (GlobalEnv == NULL) return nil;
+  return fn_mapcar(cons(symbol(CAR),cons(GlobalEnv,nil)), env);
 }
 
 object *fn_locals (object *args, object *env) {
